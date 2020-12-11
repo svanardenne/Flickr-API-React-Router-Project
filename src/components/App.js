@@ -2,7 +2,7 @@ import React from 'react';
 import Form from './Form'
 import Nav from './Nav';
 import PhotoContainer from './PhotoContainer';
-import apiKey from '../config'
+import apiKey from '../config';
 
 function App() {
   return (

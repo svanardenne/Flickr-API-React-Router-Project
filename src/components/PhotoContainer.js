@@ -1,12 +1,19 @@
 import React from 'react';
 
-const PhotoContainer = () => {
+import Photo from './Photo';
+
+const PhotoContainer = (props) => {
 
   return(
-    <div class="photo-container">
+    <div className="photo-container">
       <h2>Results</h2>
       <ul>
-
+        {props.photos.map(photo => 
+          <Photo 
+            key={photo.id}
+            photos={photo} 
+          />
+        )}
       </ul>
     </div>
   );

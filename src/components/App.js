@@ -13,20 +13,25 @@ import {BrowserRouter,
 class App extends Component {
 
   state = {
-    photos: []
+    photos: [],
+    isLoading: true
   };
 
   componentDidMount() {
-    this.getPhotos();
+    this.getPhotos('random');
   }
 
   getPhotos = (query) => {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(res => {
         this.setState({
-          photos: res.data.photos.photo
+          photos: res.data.photos.photo,
+          isLoading: false
         });
       })
+      .catch(err => {
+        console.log('Error fetching data', err);
+      });
   }
 
   render() {
@@ -35,7 +40,13 @@ class App extends Component {
         <div className="container">
           <Form />
           <Nav getPhotos={this.getPhotos} />
+          {
+            (this.state.isLoading)
+            ? <p>Loading</p>
+            : null
+          }
           <Switch>
+            <Route exact path="/" render={() => <PhotoContainer photos={(this.state.photos)} />} />
             <Route path="/cats" render={() => <PhotoContainer photos={(this.state.photos)} />} />
             <Route path="/dogs" render={() => <PhotoContainer photos={this.state.photos} />} />
             <Route path="/computers" render={() => <PhotoContainer photos={this.state.photos} />} />

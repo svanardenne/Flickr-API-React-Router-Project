@@ -7,7 +7,8 @@ import PhotoContainer from './PhotoContainer';
 import apiKey from '../config';
 import {BrowserRouter,
         Route,
-        Switch
+        Switch,
+        Redirect
 } from 'react-router-dom';
 
 class App extends Component {
@@ -16,10 +17,6 @@ class App extends Component {
     photos: [],
     isLoading: true
   };
-
-  componentDidMount() {
-    this.getPhotos();
-  }
 
   getPhotos = (query = 'random') => {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
@@ -38,7 +35,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="container">
-          <Form />
+          <Form getPhotos={this.getPhotos} />
           <Nav getPhotos={this.getPhotos} />
           {
             (this.state.isLoading)
@@ -46,10 +43,10 @@ class App extends Component {
             : null
           }
           <Switch>
-            <Route exact path="/" render={() => <PhotoContainer photos={(this.state.photos)} />} />
-            <Route path="/cats" render={() => <PhotoContainer photos={(this.state.photos)} />} />
-            <Route path="/dogs" render={() => <PhotoContainer photos={this.state.photos} />} />
-            <Route path="/computers" render={() => <PhotoContainer photos={this.state.photos} />} />
+            <Redirect exact path="/" to="/dogs" />
+            <Route path="/cats" render={() => <PhotoContainer data="cats" getPhotos={this.getPhotos} photos={(this.state.photos)} />} />
+            <Route path="/dogs" render={() => <PhotoContainer data="dogs" getPhotos={this.getPhotos} photos={this.state.photos} />} />
+            <Route path="/computers" render={() => <PhotoContainer data="computers" getPhotos={this.getPhotos} photos={this.state.photos} />} />
             <Route component={NotFound} />
           </Switch>
         </div>

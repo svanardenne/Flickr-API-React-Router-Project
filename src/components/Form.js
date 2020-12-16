@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 class Form extends Component {
 
+  /* Changes url to query value and adds cutoms search link on submit */ 
   handleSubmit = (e) => {
     e.preventDefault();
    this.props.history.push(`/${this.query.value}`);

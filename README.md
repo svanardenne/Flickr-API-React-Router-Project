@@ -1,10 +1,8 @@
-# Getting Started with Create React App
+# Flickr API React Router Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
+Original CSS from Team Treehouse (index.css)
+Styles.css is original
+   - Added styles to link remove buttons
 
 ### `npm start`
 

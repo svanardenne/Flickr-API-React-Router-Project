@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+
+/* Component imports */ 
 import Form from './Form'
 import Nav from './Nav';
 import NotFound from './NotFound';
@@ -23,6 +25,7 @@ class App extends Component {
     isLoading: true
   };
 
+  /* Adds a new search link on custom search */ 
   addSearchLink = (query) => {
     this.setState(prevState => {
       return {
@@ -34,6 +37,7 @@ class App extends Component {
     });
   }
 
+  /* Removes custom search link */ 
   removeSearchLink = (query) => {
     this.setState( prevState => {
       return {
@@ -42,7 +46,8 @@ class App extends Component {
     });
   }
 
-  getPhotos = (query = 'random') => {
+  /* Fetches data from flickr API and uses it to set state */ 
+  getPhotos = (query) => {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(res => {
         this.setState({

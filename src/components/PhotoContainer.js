@@ -1,14 +1,19 @@
 import React, {Component} from 'react';
 
+/* Component imports */ 
+import NotFound from './NotFound';
 import Photo from './Photo';
 
 class PhotoContainer extends Component {
 
   componentDidMount() {
+    /* Fetches data on mount based on query */ 
     this.props.getPhotos(this.props.match.params.query);
   }
 
   componentDidUpdate(prevProps) {
+    /* Fetches data on mount based on query 
+    (if statement prevents infinite loop) */ 
     if (this.props.match.params.query !== prevProps.match.params.query) {
       this.props.getPhotos(this.props.match.params.query);
     }
@@ -20,12 +25,18 @@ class PhotoContainer extends Component {
       <div className="photo-container">
         <h2>Results</h2>
         <ul>
-          {this.props.photos.map(photo => 
+        {
+          (this.props.photos.length > 0)
+          ?           
+            this.props.photos.map(photo => 
             <Photo 
               key={photo.id}
               photos={photo} 
             />
-          )}
+          )
+          :
+            <NotFound />
+        }
         </ul>
       </div>
     );

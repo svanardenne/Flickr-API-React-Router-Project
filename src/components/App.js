@@ -7,10 +7,11 @@ import Nav from './Nav';
 import NotFound from './NotFound';
 import PhotoContainer from './PhotoContainer';
 import apiKey from '../config';
-import {BrowserRouter,
-        Route,
-        Switch,
-        Redirect
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+  Redirect
 } from 'react-router-dom';
 
 class App extends Component {

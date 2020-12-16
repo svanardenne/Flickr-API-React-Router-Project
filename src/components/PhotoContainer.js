@@ -28,14 +28,14 @@ class PhotoContainer extends Component {
         {
           (this.props.photos.length > 0)
           ?           
-            this.props.photos.map(photo => 
+          this.props.photos.map(photo => 
             <Photo 
               key={photo.id}
               photos={photo} 
             />
           )
           :
-            <NotFound />
+          <NotFound />
         }
         </ul>
       </div>

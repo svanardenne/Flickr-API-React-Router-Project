@@ -6,9 +6,9 @@ const Nav = (props) => {
   return(
     <nav className="main-nav">
       <ul>
-        <li><NavLink onClick={() => props.getPhotos('cats')} to="/cats">Cats</NavLink></li>
-        <li><NavLink onClick={() => props.getPhotos('dogs')} to="/dogs">Dogs</NavLink></li>
-        <li><NavLink onClick={() => props.getPhotos('computers')} to="/computers">Computers</NavLink></li>
+        <li><NavLink to="/cats">Cats</NavLink></li>
+        <li><NavLink to="/dogs">Dogs</NavLink></li>
+        <li><NavLink to="/computers">Computers</NavLink></li>
       </ul>
     </nav>
   );

@@ -5,7 +5,14 @@ import Photo from './Photo';
 class PhotoContainer extends Component {
 
   componentDidMount() {
-    this.props.getPhotos(this.props.data);
+    this.props.getPhotos(this.props.match.params.query);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.query !== prevProps.match.params.query) {
+      this.props.getPhotos(this.props.match.params.query);
+    }
+
   }
 
   render() {

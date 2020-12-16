@@ -35,7 +35,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="container">
-          <Form getPhotos={this.getPhotos} />
+          <Route render={(props) => <Form {...props} />} />
           <Nav getPhotos={this.getPhotos} />
           {
             (this.state.isLoading)
@@ -44,9 +44,7 @@ class App extends Component {
           }
           <Switch>
             <Redirect exact path="/" to="/dogs" />
-            <Route path="/cats" render={() => <PhotoContainer data="cats" getPhotos={this.getPhotos} photos={(this.state.photos)} />} />
-            <Route path="/dogs" render={() => <PhotoContainer data="dogs" getPhotos={this.getPhotos} photos={this.state.photos} />} />
-            <Route path="/computers" render={() => <PhotoContainer data="computers" getPhotos={this.getPhotos} photos={this.state.photos} />} />
+            <Route path="/:query" render={(props) => <PhotoContainer {...props} getPhotos={this.getPhotos} photos={this.state.photos} />} />
             <Route component={NotFound} />
           </Switch>
         </div>

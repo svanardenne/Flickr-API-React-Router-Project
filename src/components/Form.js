@@ -4,7 +4,7 @@ class Form extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.getPhotos(this.query.value);
+   this.props.history.push(`/${this.query.value}`);
     e.currentTarget.reset();
   }
 

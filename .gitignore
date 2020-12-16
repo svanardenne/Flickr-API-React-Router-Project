@@ -26,3 +26,6 @@ yarn-error.log*
 
 # config
 src/config.js
+
+# ESLintCache
+.eslintcache

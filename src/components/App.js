@@ -15,8 +15,32 @@ class App extends Component {
 
   state = {
     photos: [],
+    navLinks: [
+      "cats",
+      "dogs",
+      "computers"
+    ],
     isLoading: true
   };
+
+  addSearchLink = (query) => {
+    this.setState(prevState => {
+      return {
+        navLinks: [
+          ...prevState.navLinks,
+          query
+        ]
+      }
+    });
+  }
+
+  removeSearchLink = (query) => {
+    this.setState( prevState => {
+      return {
+        navLinks: prevState.navLinks.filter(q => q !== query)
+      };
+    });
+  }
 
   getPhotos = (query = 'random') => {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
@@ -35,8 +59,8 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="container">
-          <Route render={(props) => <Form {...props} />} />
-          <Nav getPhotos={this.getPhotos} />
+          <Route render={(props) => <Form {...props} addSearchLink={this.addSearchLink} />} />
+          <Nav getPhotos={this.getPhotos}  links={this.state.navLinks}  removeSearchLink={this.removeSearchLink} />
           {
             (this.state.isLoading)
             ? <p>Loading</p>

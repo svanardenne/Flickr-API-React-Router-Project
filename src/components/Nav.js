@@ -6,10 +6,13 @@ const Nav = (props) => {
   return(
     <nav className="main-nav">
       <ul>
-        <li><NavLink to="/cats">Cats</NavLink></li>
-        <li><NavLink to="/dogs">Dogs</NavLink></li>
-        <li><NavLink to="/computers">Computers</NavLink></li>
+        {props.links.map((link, index) => (
+          <li className="nav-link" key={index}>
+          <NavLink to={`/${link}`}>{`${link.charAt(0).toUpperCase() + link.slice(1)}`}</NavLink>
+          <button className="remove-button" onClick={() => props.removeSearchLink(link)}>X</button></li>
+        ))}
       </ul>
+
     </nav>
   );
 

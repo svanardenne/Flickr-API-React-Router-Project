@@ -5,6 +5,7 @@ class Form extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
    this.props.history.push(`/${this.query.value}`);
+   this.props.addSearchLink(this.query.value);
     e.currentTarget.reset();
   }
 

@@ -18,11 +18,7 @@ class App extends Component {
 
   state = {
     photos: [],
-    navLinks: [
-      "cats",
-      "dogs",
-      "computers"
-    ],
+    navLinks: [],
     isLoading: true
   };
 
@@ -74,7 +70,10 @@ class App extends Component {
           }
           <Switch>
             <Redirect exact path="/" to="/dogs" />
-            <Route path="/:query" render={(props) => <PhotoContainer {...props} getPhotos={this.getPhotos} photos={this.state.photos} />} />
+            <Route path="/cats" render={(props) => <PhotoContainer {...props} data="cats" getPhotos={this.getPhotos} photos={this.state.photos} />} />
+            <Route path="/dogs" render={(props) => <PhotoContainer {...props} data="dogs" getPhotos={this.getPhotos} photos={this.state.photos} />} />
+            <Route path="/computers" render={(props) => <PhotoContainer {...props} data="computers" getPhotos={this.getPhotos} photos={this.state.photos} />} />
+            <Route path="/search/:query" render={(props) => <PhotoContainer {...props} getPhotos={this.getPhotos} photos={this.state.photos} />} />
             <Route component={NotFound} />
           </Switch>
         </div>

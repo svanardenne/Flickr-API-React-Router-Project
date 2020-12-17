@@ -12,3 +12,13 @@
   color: white;
   cursor: pointer;
 }
+
+.photo-container {
+  position: relative;
+}
+
+.loading {
+  position: absolute;
+  top: 25px;
+  left: 450px;
+}

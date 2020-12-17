@@ -3,6 +3,7 @@
 Original CSS from Team Treehouse (index.css)
 Styles.css is original
    - Added styles to link remove buttons
+   - Added styles for loading indicator
 
 ### `npm start`
 

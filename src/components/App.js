@@ -25,11 +25,13 @@ class App extends Component {
   /* Adds a new search link on custom search */ 
   addSearchLink = (query) => {
     this.setState(prevState => {
-      return {
-        navLinks: [
-          ...prevState.navLinks,
-          query
-        ]
+      if (!this.state.navLinks.includes(query)) {
+        return {
+          navLinks: [
+            ...prevState.navLinks,
+            query
+          ]
+        }
       }
     });
   }
@@ -68,21 +70,59 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="container">
-          <Route render={(props) => <Form {...props} addSearchLink={this.addSearchLink} />} />
-          <Nav getPhotos={this.getPhotos}  links={this.state.navLinks}  removeSearchLink={this.removeSearchLink} />
+          <Route render={(props) => 
+            <Form 
+              {...props} 
+              addSearchLink={this.addSearchLink} 
+            />} 
+          />
+          <Nav 
+            getPhotos={this.getPhotos}  
+            links={this.state.navLinks}  
+            removeSearchLink={this.removeSearchLink} 
+          />
           <div className="photo-container">
             <h2>Results</h2>
-            {
-              (this.state.isLoading)
-              ? <p className="loading">Loading</p>
-              : null
-            }
+            {(this.state.isLoading)
+            ? <p className="loading">Loading</p>
+            : null}
             <Switch>
               <Redirect exact path="/" to="/dogs" />
-              <Route path="/cats" render={(props) => <PhotoContainer {...props} pageLoad={this.pageLoad} data="cats" getPhotos={this.getPhotos} photos={this.state.photos} />} />
-              <Route path="/dogs" render={(props) => <PhotoContainer {...props} pageLoad={this.pageLoad} data="dogs" getPhotos={this.getPhotos} photos={this.state.photos} />} />
-              <Route path="/computers" render={(props) => <PhotoContainer {...props} pageLoad={this.pageLoad} data="computers" getPhotos={this.getPhotos} photos={this.state.photos} />} />
-              <Route path="/search/:query" render={(props) => <PhotoContainer {...props} pageLoad={this.pageLoad} getPhotos={this.getPhotos} photos={this.state.photos} />} />
+              <Route path="/cats" render={(props) => 
+                <PhotoContainer 
+                  {...props} 
+                  pageLoad={this.pageLoad} 
+                  data="cats" 
+                  getPhotos={this.getPhotos} 
+                  photos={this.state.photos} 
+                />} 
+              />
+              <Route path="/dogs" render={(props) => 
+                <PhotoContainer 
+                  {...props} 
+                  pageLoad={this.pageLoad} 
+                  data="dogs" 
+                  getPhotos={this.getPhotos} 
+                  photos={this.state.photos} 
+                />} 
+              />
+              <Route path="/computers" render={(props) => 
+                <PhotoContainer 
+                  {...props} 
+                  pageLoad={this.pageLoad} 
+                  data="computers" 
+                  getPhotos={this.getPhotos} 
+                  photos={this.state.photos} 
+                />} 
+              />
+              <Route path="/search/:query" render={(props) => 
+                <PhotoContainer 
+                  {...props} 
+                  pageLoad={this.pageLoad} 
+                  getPhotos={this.getPhotos} 
+                  photos={this.state.photos} 
+                />} 
+              />
               <Route component={NotFound} />
             </Switch>
           </div>

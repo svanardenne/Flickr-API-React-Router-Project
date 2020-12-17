@@ -33,20 +33,20 @@ class PhotoContainer extends Component {
 
   render() {
     return(
-        <ul>
-          {
-            (this.props.photos.length > 0)
-            ?           
-            this.props.photos.map(photo => 
-              <Photo 
-                key={photo.id}
-                photos={photo} 
-              />
-            )
-            :
-            <NotFound />
-          }
-        </ul>
+      <ul>
+        {
+          (this.props.photos.length > 0)
+          ?           
+          this.props.photos.map(photo => 
+            <Photo 
+              key={photo.id}
+              photos={photo} 
+            />
+          )
+          :
+          <NotFound />
+        }
+      </ul>
     );
   }
 }

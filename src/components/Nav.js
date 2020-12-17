@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 
 const Nav = (props) => {
 
@@ -12,7 +12,7 @@ const Nav = (props) => {
         {props.links.map((link, index) => (
           <li className="nav-link" key={index}>
             <NavLink to={`/search/${link}`}>{`${link.charAt(0).toUpperCase() + link.slice(1)}`}</NavLink>
-              <button className="remove-button" onClick={() => props.removeSearchLink(link)}>X</button>
+              <Link to={`/`} className="remove-button" onClick={() => props.removeSearchLink(link)}>X</Link>
           </li>
         ))}
       </ul>

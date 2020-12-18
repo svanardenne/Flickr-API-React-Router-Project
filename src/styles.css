@@ -1,5 +1,10 @@
-.nav-link {
+.main-nav ul {
+  flex-wrap: wrap;
+}
+
+.new-link {
   position: relative;
+  margin-right: 28px !important;
 }
 
 .remove-button {

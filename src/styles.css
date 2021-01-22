@@ -23,8 +23,12 @@
   position: relative;
 }
 
+.photo-container h2 {
+  margin: 0 auto 30px;
+}
+
 .loading {
   position: absolute;
   top: 25px;
-  left: 450px;
+  left: 47%;
 }

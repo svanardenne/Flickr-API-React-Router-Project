@@ -7,8 +7,8 @@ Styles.css is original
    - Added styles for loading indicator
 
 # Installation
-To install dependancies, run "npm install"
+To install dependancies, run ```npm install```
 
 # To run
- - To start the application, run "npm start"
+ - To start the application, run ```npm start```
  - Project serves on localhost:3000
